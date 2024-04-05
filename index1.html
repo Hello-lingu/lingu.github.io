@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="en_US">
+  <head>
+    <style>
+      html {
+        background-color: #00539f;
+      }
+
+      body {
+        width: 600px;
+        margin: 0 auto;
+        background: #ff9500;
+        padding: 0 20px 30px 20px;
+        border: 5px solid black;
+        border-radius: 20px 20px 20px 20px;
+      }
+
+      h1 {
+        font-size: 60px;
+        text-align: center;
+        margin: 0;
+        padding: 20px 0;
+      }
+
+      label {
+        font-size: 30px;
+      }
+
+      p {
+        font-size: 30px;
+      }
+
+      input {
+        font-size: 24px;
+        width: 400px;
+        height: 10px;
+        padding: 12px 20px;
+        border-radius: 7px 7px 7px 7px;
+      }
+
+      button {
+        width: 80px;
+        height: 40px;
+        border-radius: 7px 7px 7px 7px;
+      }
+    </style>
+    <meta charset="utf-8" />
+    <meta name="viewprot" content="width=device-width" />
+    <title>MBI count</title>
+  </head>
+  <body>
+    <h1>Conut your MBI</h1>
+    <label for="heavy">Please input your heavy(kg):</label><br>
+    <input id="heavy" value="" name="heavy" size="20"><br>
+    <p id="heavyerror"></p>
+    <label for="height">Please input your height(m):</label><br>
+    <input id="height" value="" name="tall" size="20"><br>
+    <p id="heighterror"></p>
+    <p id="showMBI"></p>
+  </body>
+  <button type="button" name="run">run</button>
+  <script>
+    var showMBI = document.getElementById("showMBI");
+    var run_button = document.querySelector("button");
+
+    run_button.onclick = function () {
+      var heavy = document.getElementById("heavy").value;
+      if ( heavy === "" || heavy == null ) {
+        let heavy_error = document.getElementById("heavyerror");
+        heavy_error.textcontent = "Heavy is None!";
+      }
+
+      var height = document.getElementById("height").value;
+      if ( height === "" || height == null ) {
+        var height_error = document.getElementById("heighterror");
+        height_error.textcontent = "Height is None!";
+      }
+      var result = heavy / ( height * height );
+      if ( result < 18.5 ) {
+        showMBI.textContent = "Your MBI is: " + result.toFixed(2) + ".You are thin";
+      }
+      if ( result > 24 ) {
+        showMBI.textContent = "Your MBI is: " + result.toFixed(2) + ".You are heavy";
+      }
+      if ( result >= 18.5 && result <= 24 ) {
+        showMBI.textContent = "Your MBI is: " + result.toFixed(2) + ".You are normal";
+      }
+    }
+  </script>
+</html>
